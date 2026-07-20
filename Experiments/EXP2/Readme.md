@@ -108,11 +108,11 @@ FROM inventory;
 SQL-Set-Operators/
 │
 ├── README.md
-├── Exp2.1.png
-├── Exp2.2.png
-├── Exp2.3.png
-├── Exp2.4.png
-└── Exp2.txt
+├── 2.1.png
+├── 2.2.png
+├── 2.3.png
+├── 2.4.png
+└── exp2.txt
 ```
 
 ---
