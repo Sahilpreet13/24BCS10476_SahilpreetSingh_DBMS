@@ -108,18 +108,18 @@ FROM inventory;
 SQL-Set-Operators/
 │
 ├── README.md
-├── Exp2.1.sql
-├── Exp2.2.sql
-├── Exp2.3.sql
-├── Exp2.4.sql
-└── screenshots/
+├── Exp2.1.png
+├── Exp2.2.png
+├── Exp2.3.png
+├── Exp2.4.png
+└── Exp2.txt
 ```
 
 ---
 
 ## 📸 Output
 
-Screenshots of each experiment's output are included in the repository under the `screenshots/` directory.
+Screenshots of each experiment's output are included in the repository.
 
 ---
 
