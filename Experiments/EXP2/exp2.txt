@@ -1,0 +1,33 @@
+#Exp2.1
+
+SELECT *
+FROM Arts
+UNION
+SELECT *
+FROM Science;
+
+
+#Exp2.2
+
+SELECT  emp_name FROM Employee
+UNION ALL
+SELECT  emp_name FROM pt_employee;
+
+
+#Exp2.3
+
+SELECT f_name
+FROM fruit
+INTERSECT
+SELECT inv_name
+FROM inventory
+
+
+#Exp2.4
+
+SELECT f_name
+FROM fruit
+EXCEPT
+SELECT inv_name
+FROM inventory
+
