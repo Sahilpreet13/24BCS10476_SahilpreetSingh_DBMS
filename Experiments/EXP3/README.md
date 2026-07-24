@@ -1,8 +1,8 @@
-# Experiment 3 – SQL Aggregate Functions, Conditional Counting & Subqueries
+# Experiment 3 – SQL Aggregate Functions, Conditional Counting, Joins & Subqueries
 
 ## Aim
 
-To understand and implement SQL aggregate functions, conditional counting using the `CASE` statement, grouping of records, filtering grouped data using the `HAVING` clause, and subqueries to retrieve meaningful information from relational databases.
+To understand and implement SQL aggregate functions, conditional counting using the `CASE` statement, grouping of records, filtering grouped data using the `HAVING` clause, joins, and subqueries for extracting meaningful information from relational databases.
 
 ---
 
@@ -10,8 +10,9 @@ To understand and implement SQL aggregate functions, conditional counting using 
 
 - Learn the use of SQL Aggregate Functions such as `COUNT()`, `SUM()`, and `AVG()`.
 - Understand conditional aggregation using the `CASE` statement.
-- Apply the `GROUP BY` clause to categorize data.
-- Use the `HAVING` clause to filter grouped results.
+- Apply the `GROUP BY` clause to categorize records.
+- Filter grouped data using the `HAVING` clause.
+- Perform table joins using the `LEFT JOIN` operation.
 - Retrieve distinct values using the `DISTINCT` keyword.
 - Implement subqueries to solve real-world SQL problems.
 - Develop efficient SQL queries for data analysis and reporting.
@@ -56,12 +57,12 @@ Create an **Employees** table and perform various analytical operations using SQ
 ### 1. Count the number of employees in each city.
 
 ### 2. Count the number of employees in each city and sort the results:
-- Ascending order of employee count.
-- Descending order of employee count (if counts are equal, sort by city name).
+- In ascending order of employee count.
+- In descending order of employee count (if counts are equal, sort alphabetically by city name).
 
-### 3. Count employees having a salary greater than or equal to **90,000** in each city using conditional aggregation.
+### 3. Count employees whose salary is greater than or equal to **90,000** in each city using conditional aggregation.
 
-### 4. Use the `HAVING` clause to filter grouped data.
+### 4. Filter grouped results using the `HAVING` clause.
 
 ### 5. Calculate the average salary of employees in each city.
 
@@ -90,7 +91,7 @@ The complete SQL script for this exercise is available in **exp3.txt**. :content
 
 ## Problem Statement
 
-Retrieve the names of customers who have never placed an order using a subquery.
+Write an SQL query to find the names of customers who have never placed an order.
 
 **Reference:** https://leetcode.com/problems/customers-who-never-order/
 
@@ -117,11 +118,43 @@ WHERE id NOT IN (
 
 ---
 
+# Exercise 3.4 – Employee Bonus
+
+## Problem Statement
+
+Write an SQL query to report the **name** and **bonus** of each employee whose bonus is **less than 1000**. Include employees who have **not received any bonus**.
+
+**Reference:** https://leetcode.com/problems/employee-bonus/
+
+## Concepts Used
+
+- `LEFT JOIN`
+- Conditional Filtering
+- Handling `NULL` values
+- `WHERE` clause
+
+## SQL Query
+
+```sql
+SELECT e.name, b.bonus
+FROM Employee e
+LEFT JOIN Bonus b
+ON e.empId = b.empId
+WHERE b.bonus < 1000
+   OR b.bonus IS NULL;
+```
+
+## Output
+
+![Exercise 3.4 Output](3.4.png)
+
+---
+
 # References
 
 ### Exercise 2.1
 
-**CodeChef – SQL Intermediate**
+**CodeChef – SQL Intermediate (Count Using CASE)**
 
 https://www.codechef.com/learn/course/sql-intermediate/SQ00BS08/problems/GSQ82
 
@@ -131,6 +164,12 @@ https://www.codechef.com/learn/course/sql-intermediate/SQ00BS08/problems/GSQ82
 
 https://leetcode.com/problems/customers-who-never-order/
 
+### Exercise 3.4
+
+**LeetCode 577 – Employee Bonus**
+
+https://leetcode.com/problems/employee-bonus/
+
 ---
 
 # Learning Outcomes
@@ -139,9 +178,11 @@ After completing this experiment, the following concepts were successfully imple
 
 - SQL Aggregate Functions (`COUNT`, `SUM`, `AVG`)
 - Conditional Aggregation using `CASE`
-- Data Grouping with `GROUP BY`
-- Filtering Groups using `HAVING`
-- Sorting Results using `ORDER BY`
-- Eliminating Duplicate Values using `DISTINCT`
-- Writing Nested Queries (Subqueries)
+- Grouping records using `GROUP BY`
+- Filtering grouped data using `HAVING`
+- Sorting query results using `ORDER BY`
+- Eliminating duplicate values using `DISTINCT`
+- Performing table joins using `LEFT JOIN`
+- Handling `NULL` values in SQL queries
+- Writing nested queries (Subqueries)
 - Solving real-world SQL problems using analytical queries
