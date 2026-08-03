@@ -1,0 +1,89 @@
+#Exp4.1
+
+-- Customers and Orders: List the customer_name and order_date for all customers who have placed orders.
+Select c.customer_name, o.order_date from
+customers c
+INNER JOIN orders o
+ON c.customer_id = o.customer_id;
+
+-- All Customers and Their Orders: List all customer names and their corresponding product_name from orders, if they have any. Include customers even if they haven't placed any orders.
+Select c.customer_name, o.product_name from
+customers c
+LEFT JOIN orders o
+ON c.customer_id = o.customer_id;
+
+
+-- Find Products and Their Orders: Display Product Name and the order_date from all the products that are ordered.
+Select p.product_name, o.order_date
+from products p
+INNER JOIN orders o
+ON o.product_name = p.product_name
+
+
+#Exp4.2
+
+ SELECT * FROM student s
+ INNER JOIN course c
+ ON s.Course_id = c.Course_id;
+ 
+ SELECT * FROM student s
+ LEFT JOIN course c
+ ON s.Course_id = c.Course_id;
+
+
+#Exp4.3
+
+-- 1.All orders with Customers Details: Get all of the orders table and also the details of respective customers if they exist. Use the customer and orders table.
+SELECT c.customer_name, o.order_id, c.customer_id, o.product_name, o.order_date, o.quantity FROM orders o
+INNER JOIN customers c
+ON o.customer_id = c.customer_id;
+
+-- 2.Products and Categories: Create a combined list of all products and all categories. Include all product names and all category names. Where there's a match, show both; otherwise, use NULLs.
+SELECT p.product_name, c.category_name 
+FROM products p
+LEFT JOIN categories c
+ON p.category_id = c.category_id;
+
+-- 3.All category names with product details: display category_name, along with all product names and price from all the categories present in categories table.
+SELECT c.category_name, p.product_name, p.price 
+FROM products p
+LEFT JOIN categories c
+ON p.category_id = c.category_id;
+
+
+#Exp4.4
+
+select * from student as s1
+FULL OUTER join course as c1
+on s1.Course_id=c1.Course_id
+
+
+#Exp4.5
+
+-- 1.Employee and Manager Names: Display a list of employee names along with their manager's names. Use the 'employees' table provided.
+SELECT e1.employee_name as Employee, e2.employee_name as Manager
+from employees as e1
+LEFT JOIN employees as e2
+ON e1.manager_id = e2.employee_id;
+
+-- 2.Every Possible Combination: Show every possible combination of 'customer_name' from the 'customers' table and 'product_name' from the 'products' table.
+SELECT c.customer_name, p.product_name FROM
+customers c
+CROSS JOIN products p;
+
+
+#Exp4.6
+
+SELECT s1.St_id, s1.st_Name, s1.Department,
+s2.St_id, s2.St_name, s2.Department
+FROM student s1
+INNER JOIN student s2
+ON s1.Department = s2.Department
+AND s1.St_id != s2.St_id;
+
+SELECT s1.St_id, s1.St_Name, s1.Course_id
+FROM student s1
+INNER JOIN student s2
+ON s1.Course_id = s2.Course_id
+AND s1.St_id != s2.St_id
+ORDER BY s1.Course_id;
