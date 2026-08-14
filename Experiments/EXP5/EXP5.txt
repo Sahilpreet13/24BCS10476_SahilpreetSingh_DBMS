@@ -1,0 +1,29 @@
+#Exp 5.1
+
+SELECT ROUND((100*(SUM(CASE WHEN cuisine='American' THEN price ELSE 0 END))/SUM(price)), 2) AS American_Revenue
+FROM orders
+
+
+#Exp 5.2
+
+SELECT tweet_id FROM Tweets WHERE length(content)>15
+
+
+#Exp 5.3
+
+DO $$
+DECLARE
+	VAL INT := 21;
+BEGIN
+	IF VAL>0 AND VAL<=10 THEN
+		RAISE NOTICE 'Your value is % and range is between 1 to 10', VAL;
+
+	ELSIF VAL>10 AND VAL<20 THEN
+		RAISE NOTICE'Your value is % and range is between 11 to 20', VAL;
+
+	ELSE 
+		RAISE NOTICE 'YOUR value is % and range is greater than 20', VAL;
+
+	END IF;
+END;
+$$
