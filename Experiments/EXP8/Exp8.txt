@@ -1,0 +1,29 @@
+CREATE OR REPLACE PROCEDURE update_sal_proc(
+	IN p_emp_id INT,
+	OUT status VARCHAR(20),
+	INOUT p_salary NUMERIC(20, 2)
+)
+AS $$
+DECLARE
+
+current_sal NUMERIC;
+BEGIN
+
+SELECT salary INTO current_sal
+FROM employee
+WHERE emp_id = p_emp_id;
+IF NOT FOUND THEN 
+RAISE EXCEPTION 'EMPLOYEE NOT FOUND';
+END IF;
+
+p_salary := current_sal+p_salary;	
+UPDATE employee
+SET salary = p_salary
+WHERE emp_id = p_emp_id;
+
+status := 'SUCCESS';
+
+END;
+$$ LANGUAGE PLPGSQL
+
+CALL update_sal_proc(102, NULL, 5300);
