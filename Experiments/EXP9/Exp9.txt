@@ -1,0 +1,52 @@
+#9.1
+CREATE OR REPLACE FUNCTION check_salary_hike()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.salary > OLD.salary * 1.15 THEN
+        RAISE EXCEPTION
+            'Salary hike cannot exceed 15%% of the old salary';
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER salary_hike_trigger
+BEFORE UPDATE OF salary ON Salary_Hike
+FOR EACH ROW
+EXECUTE FUNCTION check_salary_hike();
+
+
+-- Allowed: 10% increase
+UPDATE Salary_Hike
+SET salary = 44000
+WHERE emp_id = 1;
+
+-- Rejected: exceeds 15%
+UPDATE Salary_Hike
+SET salary = 90000
+WHERE emp_id = 1;
+
+
+#9.2
+BEGIN;
+
+
+UPDATE tran_employees
+SET salary = salary + 5000
+WHERE emp_id = 1;
+
+SAVEPOINT salary_update;
+
+UPDATE tran_employees
+SET salary = -20000
+WHERE emp_id = 2;
+
+
+ROLLBACK TO SAVEPOINT salary_update;
+
+COMMIT;
+
+
+SELECT * FROM tran_employees;
